@@ -1,0 +1,37 @@
+# Import necessary libraries
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+# Simulated dataset (replace this with your actual dataset)
+# Features represent network behavior metrics, and labels indicate normal or attack
+X = [[feature1, feature2, ...], [feature1, feature2,...]]
+# Features
+y = [0, 1, ...]  # Labels (0: Normal, 1: Attack)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a KNN classifier
+knn_classifier = KNeighborsClassifier(n_neighbors=3)
+
+# Train the model
+knn_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = knn_classifier.predict(X_test)
+
+# Calculate evaluation metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+# Print the results
+print(f"Accuracy: {accuracy * 100:.2f}%")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+print(f"F1 Score: {f1:.2f}")
+print("Confusion Matrix:")
+print(conf_matrix)
